@@ -21,6 +21,7 @@ class CreateFileMastersTable extends Migration
             $table->text('file_upload');
             $table->string('assigned_to');
             $table->string('description',500)->nullable();
+            $table->integer('file_status');
             $table->timestamps();
         });
     }

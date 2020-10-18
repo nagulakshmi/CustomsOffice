@@ -212,7 +212,7 @@
                                 <p>Files</p>
                                 <span class="caret"></span>
                             </a>
-                            <div {{{((Request::is('create','latestfilelist','inprogessfile','closedfile','rejectfile','overall')) ? 'class=show' : 'class=collapse')}}}
+                            <div {{{((Request::is('create','filestatuslist','inprogessfile','closedfile','rejectfile','overall')) ? 'class=show' : 'class=collapse')}}}
                                 id="file">
                                 <ul class="nav nav-collapse">
                                     <li {{{(Request::is('create') ? 'class=active' : '')}}}>
@@ -220,28 +220,28 @@
                                             <span class="sub-item">File Creation</span>
                                         </a>
                                     </li>
-                                    <li {{{(Request::is('latestfilelist') ? 'class=active' : '')}}}>
-                                        <a href="/latestfilelist">
+                                    <li {{{(Request::is('filestatuslist') ? 'class=active' : '')}}}>
+                                        <a href="/filestatuslist?status_id=2">
                                             <span class="sub-item">LatestFiles List</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('inprogessfile') ? 'class=active' : '')}}}>
-                                        <a href="/inprogessfile">
+                                        <a href="/filestatuslist?status_id=3">
                                             <span class="sub-item">InProgess Files</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('closedfile') ? 'class=active' : '')}}}>
-                                        <a href="/closedfile">
+                                        <a href="/filestatuslist?status_id=4">
                                             <span class="sub-item">Closed Files</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('rejectfile') ? 'class=active' : '')}}}>
-                                        <a href="/rejectfile">
+                                        <a href="/filestatuslist?status_id=5">
                                             <span class="sub-item">Rejected Files</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('overall') ? 'class=active' : '')}}}>
-                                        <a href="/overall">
+                                        <a href="/filestatuslist?status_id=0">
                                             <span class="sub-item">Overall Files</span>
                                         </a>
                                     </li>
@@ -435,5 +435,12 @@
 
     @yield('footer')
 </body>
+
+<script>
+document.ready(function() {
+    
+
+})
+</scipt>
 
 </html>

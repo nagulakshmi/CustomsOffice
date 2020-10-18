@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'DashboardController@index')->name('home');
 
-Route::get('/home','HomeController@dashboard')->name('dashboard');
+Route::get('/home','DashboardController@dashboard')->name('dashboard');
 
 Route::get('/create','FileController@create')->name('createnew');
 
+Route::get('/filestatuslist', 'FileController@showFileStatus')->name('latestfilelist');
 
+Route::get('/filestatuses', 'FileController@retrieveFileStatusMaster')->name('file_statuses');
