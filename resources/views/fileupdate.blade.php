@@ -44,9 +44,9 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input type="text" name="data[files][file_refno]"
-                                            placeholder="Enter Your Refernce Number" value=""
-                                            class="form-control input-full" id="fileinput" style="margin-bottom:10px"
-                                            required>
+                                            placeholder="Enter Your Refernce Number"
+                                            value="{{$fileupdated_data->file_refno}}" class="form-control input-full"
+                                            id="fileinput" style="margin-bottom:10px" required>
                                     </div>
 
                                 </div>
@@ -56,8 +56,9 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input type="text" name="data[files][file_name]"
-                                            placeholder="Enter Your Subject" value="" class="form-control input-full"
-                                            id="subjectinput" style="margin-bottom:10px" required>
+                                            placeholder="Enter Your Subject" value="{{$fileupdated_data->file_name}}"
+                                            class="form-control input-full" id="subjectinput" style="margin-bottom:10px"
+                                            required>
                                     </div>
 
                                 </div>
@@ -67,8 +68,9 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input type="text" name="data[files][file_subject]"
-                                            placeholder="Enter Your Subject" value="" class="form-control input-full"
-                                            id="subjectinput" style="margin-bottom:10px" required>
+                                            placeholder="Enter Your Subject" value="{{$fileupdated_data->file_subject}}"
+                                            class="form-control input-full" id="subjectinput" style="margin-bottom:10px"
+                                            required>
                                     </div>
 
                                 </div>
@@ -76,7 +78,11 @@
                                     <div class="col-md-3">
                                         <label for="inlineinput">File Attachment</label>
                                     </div>
-                                 
+                                    <!-- <div class="col-md-9">
+                                        <input type="text" name="data[form][subject]" placeholder="Enter Your Subject"
+                                            value="" class="form-control input-full" id="subjectinput"
+                                            style="margin-bottom:10px" required>
+                                    </div> -->
 
                                     <div class="col-md-9">
                                         <div class="input-group control-group increment">
@@ -96,7 +102,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <div class="form-group form-inline">
                                     <div class="col-md-3">
@@ -107,18 +113,34 @@
                                             id="assigned_person">
                                             <option value="" disabled selected hidden>choose</option>
                                             @foreach($officer as $key => $value)
-                                            <option value="{{$value->id }}">{{ $value->name}}</option>
+                                            <option @if($fileupdated_data->assigned_to == $key) selected="selected" @endif
+                                                value="{{ $key }}"> {{ $value->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group form-inline">
                                     <div class="col-md-3">
+                                        <label for="inlineinput">Change Status </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="form-control input-full" name="data[files][file_status]"
+                                            id="file_status">
+                                            <option value="" disabled selected hidden>choose</option>
+                                            @foreach($statuses as $key => $value)
+                                            <option value="{{ $key }}"> {{ $value->status }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-inline">
+                                    <div class="col-md-3">
                                         <label for="inlineinput">Discription</label>
                                     </div>
                                     <div class="col-md-9">
                                         <textarea class="form-control input-full" id="comment"
-                                            name="data[files][description]" rows="5" spellcheck="false">
+                                            name="data[files][description]" rows="5" spellcheck="false">{{$fileupdated_data->description}}
 									</textarea>
                                     </div>
                                 </div>
@@ -127,7 +149,7 @@
                     </div>
                     <div class="card-action">
                         <div style="float:right;">
-                            <input type="hidden" value="" name="data[file_id]">
+                            <input type="text" value="{{$fileupdated_data->id}}" name="data[files][edit_id]">
                             <button type="submit" class="btn btn-success">Submit</button>
                             <a href="#" class="btn btn-danger">Cancel</a>
                         </div>
