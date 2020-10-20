@@ -23,7 +23,7 @@ Route::get('/home','HomeController@dashboard')->name('dashboard');
 
 Route::get('/create','FileController@create')->name('create');
 
-Route::post('/savefile','FileController@fileCreate')->name('createnew');
+Route::post('/savefile','FileController@createOrUpdateFileMaster')->name('createnew');
 
 Route::get('/filestatuslist', 'FileController@showFileStatus')->name('latestfilelist');
 
@@ -31,7 +31,7 @@ Route::match(['get', 'post'], '/fileslist', 'FileController@showFileStatus')->na
 
 Route::get('/filestatuses', 'FileController@retrieveFileStatusMaster')->name('file_statuses');
 
-Route::match(['get','post'], '/filedata/edit/{id}','FileController@filedataupdate')->name('file_update');
+Route::match(['get','post'], '/filedata/edit/{id}','FileController@viewFileMasterById')->name('file_update');
 
 Route::get('/filedata/delete', 'FileController@deleteFile')->name('deletefile');
 

@@ -45,7 +45,7 @@
                                     <div class="col-md-9">
                                         <input type="text" name="data[files][file_refno]"
                                             placeholder="Enter Your Refernce Number"
-                                            value="{{$fileupdated_data->file_refno}}" class="form-control input-full"
+                                            value="{{$fileMaster->file_refno}}" class="form-control input-full"
                                             id="fileinput" style="margin-bottom:10px" required>
                                     </div>
 
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input type="text" name="data[files][file_name]"
-                                            placeholder="Enter Your Subject" value="{{$fileupdated_data->file_name}}"
+                                            placeholder="Enter Your Subject" value="{{$fileMaster->file_name}}"
                                             class="form-control input-full" id="subjectinput" style="margin-bottom:10px"
                                             required>
                                     </div>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input type="text" name="data[files][file_subject]"
-                                            placeholder="Enter Your Subject" value="{{$fileupdated_data->file_subject}}"
+                                            placeholder="Enter Your Subject" value="{{$fileMaster->file_subject}}"
                                             class="form-control input-full" id="subjectinput" style="margin-bottom:10px"
                                             required>
                                     </div>
@@ -85,7 +85,17 @@
                                     </div> -->
 
                                     <div class="col-md-9">
-                                        <div class="input-group control-group increment">
+                                        @foreach ($fileMaster->fileDetails()->get() as $item)
+                                            <div class="input-group control-group increment" style="margin-top:10px">
+                                                <input type="text" value="{{$item->file_name}}" class="form-control">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-danger" type="button"
+                                                        style="height: 49px;"><i class="glyphicon glyphicon-remove"></i>
+                                                        Remove</button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        <div class="input-group control-group increment" style="margin-top:10px">
                                             <input type="file" name="file_upload[]" class="form-control">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success" type="button" style="height: 49px;"><i
@@ -102,7 +112,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="form-group form-inline">
                                     <div class="col-md-3">
@@ -113,7 +123,7 @@
                                             id="assigned_person">
                                             <option value="" disabled selected hidden>choose</option>
                                             @foreach($officer as $key => $value)
-                                            <option @if($fileupdated_data->assigned_to == $key) selected="selected" @endif
+                                            <option @if($fileMaster->assigned_to == $key) selected="selected" @endif
                                                 value="{{ $key }}"> {{ $value->name }}</option>
                                             @endforeach
                                         </select>
@@ -140,7 +150,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <textarea class="form-control input-full" id="comment"
-                                            name="data[files][description]" rows="5" spellcheck="false">{{$fileupdated_data->description}}
+                                            name="data[files][description]" rows="5" spellcheck="false">{{$fileMaster->description}}
 									</textarea>
                                     </div>
                                 </div>
@@ -149,7 +159,7 @@
                     </div>
                     <div class="card-action">
                         <div style="float:right;">
-                            <input type="text" value="{{$fileupdated_data->id}}" name="data[files][edit_id]">
+                            <input type="text" value="{{$fileMaster->id}}" name="data[files][edit_id]">
                             <button type="submit" class="btn btn-success">Submit</button>
                             <a href="#" class="btn btn-danger">Cancel</a>
                         </div>

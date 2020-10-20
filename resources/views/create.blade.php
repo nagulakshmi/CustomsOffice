@@ -142,9 +142,9 @@
 @section('footer')
 <script type="text/javascript">
 $(document).ready(function() {
+    let add_file_component = $(".clone").html();
     $(".btn-success").click(function() {
-        var html = $(".clone").html();
-        $(".increment").after(html);
+        $(".increment").after(add_file_component);
     });
     $("body").on("click", ".btn-danger", function() {
         $(this).parents(".control-group").remove();

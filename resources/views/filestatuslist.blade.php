@@ -47,9 +47,6 @@
     </div>
 </div>
 
-
-
-
 <div class="page-inner mt--5">
     <div class="row mt--2">
         @if(count($fileList)>0)
