@@ -18,7 +18,7 @@ class CreateFileMastersTable extends Migration
             $table->string('file_refno',200);
             $table->string('file_name');
             $table->string('file_subject');
-            $table->text('file_upload');
+            $table->string('file_upload');
             $table->string('assigned_to');
             $table->string('description',500)->nullable();
             $table->integer('file_status');
@@ -35,4 +35,5 @@ class CreateFileMastersTable extends Migration
     {
         Schema::dropIfExists('file_masters');
     }
+ 
 }

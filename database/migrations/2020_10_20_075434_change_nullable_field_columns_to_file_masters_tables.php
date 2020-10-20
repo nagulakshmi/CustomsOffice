@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFileStatusTable extends Migration
+class ChangeNullableFieldColumnsToFileMastersTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateFileStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_status', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('status', 300);
-            $table->timestamps();
+        Schema::table('file_masters', function (Blueprint $table) {
+            $table->string('file_upload')->nullable()->change();
         });
     }
 
@@ -27,6 +25,8 @@ class CreateFileStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_status');
+        Schema::table('file_masters', function (Blueprint $table) {
+            //
+        });
     }
 }
