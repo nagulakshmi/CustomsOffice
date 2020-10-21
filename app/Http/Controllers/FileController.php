@@ -42,4 +42,11 @@ class FileController extends Controller
         $fileMaster = (new FileStatusService())->viewFileMasterById($request->id);
         return view('fileupdate', compact('fileMaster', 'officer', 'statuses'));
     }
+    public function deleteFileById(Request $request)
+    {
+        print_r("am here");
+        exit;
+        $fileList = (new FileStatusService())->deleteFileById($request->id);
+        return redirect()->route('latestfilelist', ['status_id' => 1]);
+    }
 }

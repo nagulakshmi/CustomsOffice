@@ -3,7 +3,7 @@
 @section('content')
 <style>
 .modal-backdrop {
-    opacity: 0.5 !important;
+    opacity: 1 !important;
 }
 </style>
 <div class="page-inner">
@@ -81,13 +81,19 @@
                                     <td>{{$item->file_name}}</td>
                                     <td>{{$item->file_subject}}</td>
                                     <td>{{$item->assigned_to}}</td>
-                                    <td>{{$item->description}}</td>                                   
+                                    <td>{{$item->description}}</td>
                                     <td>{{($item->file_status == 4) ? "Rejected" : ( ($item->file_status == 3) ? "closed": ( ($item->file_status == 2) ? "Inprogess"  : " new") ) }}
                                     </td>
                                     <td>&nbsp
                                         &nbsp
                                         <a href="{{ url('/filedata/edit', $item->id) }}"><i class="fas fa-pen-square"
                                                 aria-hidden="true"></i></a>
+                                        <!-- <button type="button" class="btn btn-primary" id="myBtn">Open Modal</button> -->
+                                        <a href="#"  data-id="<?php echo $item->id; ?>" data-title="delete"
+                                            aria-hidden="true" data-toggle="modal" data-target="#deletefiledetail"><i
+                                                class="fas fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+
                                     </td>
                                 </tr>
                                 @php $sno++; @endphp
@@ -115,4 +121,80 @@
         {{ $fileList->appends(['status_id' => request()->query('status_id') ])->links() }}
     </div>
 </div>
+
+<!-- DELETE Modal -->
+<!-- Modal -->
+<!-- <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+     Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Header</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>The <strong>show.bs.modal</strong> event occurs when the modal is about to be shown.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div> -->
+<div id="deletefiledetail" class="modal" tabindex="1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete Message</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="delete-form">
+                </form>
+                <p id="delete-name">Are you sure do you want to delete File?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="btn-delete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection('content')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+@section('footer')
+<script>
+$(document).ready(function() {
+
+    // $("#delete-file").click(function() {
+    //     $("#myDeleteModal").modal("show");
+    // });
+    $("#deletefiledetail").on('show.bs.modal', function(e) {
+
+        // var id = $(e.relatedTarget).data('id');
+        let id = $(this).attr('data-id');
+        // $("#delete-form").attr("action", "{{ url('/filedata/delete/') }}" + "/" + id);
+        $("form#delete-form").attr("action", "/filedata/delete/" + id);
+        $("form#delete-form").attr("method", "GET");
+    });
+
+    $("#btn-delete").click(function() {
+        $("#deletestreet-form").submit();
+        swal("Good job!", "successfully deleted!", {
+            icon: "success",
+            buttons: {
+                confirm: {
+                    className: 'btn btn-success'
+                }
+            },
+        });
+    });
+});
+</script>
+@endsection('footer')

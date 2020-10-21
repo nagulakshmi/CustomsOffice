@@ -221,22 +221,22 @@
                                         </a>
                                     </li>
                                     <li {{{(Request::is('filestatuslist') ? 'class=active' : '')}}}>
-                                        <a href="/filestatuslist?status_id=2">
+                                        <a href="/filestatuslist?status_id=1">
                                             <span class="sub-item">LatestFiles List</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('inprogessfile') ? 'class=active' : '')}}}>
-                                        <a href="/filestatuslist?status_id=3">
+                                        <a href="/filestatuslist?status_id=2">
                                             <span class="sub-item">InProgess Files</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('closedfile') ? 'class=active' : '')}}}>
-                                        <a href="/filestatuslist?status_id=4">
+                                        <a href="/filestatuslist?status_id=3">
                                             <span class="sub-item">Closed Files</span>
                                         </a>
                                     </li>
 									<li {{{(Request::is('rejectfile') ? 'class=active' : '')}}}>
-                                        <a href="/filestatuslist?status_id=5">
+                                        <a href="/filestatuslist?status_id=4">
                                             <span class="sub-item">Rejected Files</span>
                                         </a>
                                     </li>

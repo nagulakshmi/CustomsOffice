@@ -63,5 +63,12 @@ class FileStatusService
     {
         return FileMaster::where('id', $id)->first();
     }
+    public function deleteFileById(int $id)
+    {
+        $status = FileMaster::where('id', $id)->delete();
+        $fileMasterId = $request->id;
+        print_r($fileMasterId);
+        exit;
+    }
 
 }
