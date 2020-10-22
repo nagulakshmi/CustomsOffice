@@ -3,6 +3,7 @@
 namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class FileMaster extends Model
 {
@@ -11,4 +12,9 @@ class FileMaster extends Model
     public function fileDetails(){
         return $this->hasMany('App\Http\Models\FileDetails');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\User','assigned_to');
+    }
+
 }

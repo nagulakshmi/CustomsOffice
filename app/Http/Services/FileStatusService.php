@@ -6,7 +6,7 @@ use App\Http\Models\FileMaster;
 use App\Http\Models\FileStatus;
 use App\Http\Mappers\Request\FileMasterRequestMapper;
 use App\Http\Mappers\Request\FileDetailsRequestMapper;
-
+use App\Http\Mappers\Request\AssignedRoleRequestMapper;
 use File;
 
 class FileStatusService
@@ -16,16 +16,22 @@ class FileStatusService
     {
         return FileStatus::orderBy('id')
             ->get();
-        return [];
     }
 
-    public function showFileStatus(int $status)
+    public function showFileStatus($status)
     {
-        if ($status != 0) {
-            return FileMaster::where('file_status', $status)->orderBy('id')->paginate(5);
+        if ($status != 0) {           
+        return FileMaster::where('file_status', $status)->orderBy('id')->paginate(5);
         }
-        return FileMaster::orderBy('id')->paginate(5);
+        else
+        {
+           return  FileMaster::orderBy('id')->paginate(5);         
+           
+        }
+        
+        
     }
+   
 
     public function saveFileMaster($fileMasterRequest)
     {
